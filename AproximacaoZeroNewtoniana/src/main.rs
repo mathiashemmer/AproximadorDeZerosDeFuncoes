@@ -1,7 +1,7 @@
 extern crate meval;
 
 fn main() {
-    let initial_value = std::env::args().nth(1).expect("Initial value not set!");
+    let initial_value = -2.0;
     let max_iterations = std::env::args().nth(2).expect("Max iterations not set!");
     let equation = std::env::args().nth(3).expect("No equation supplied");
     let derivative = std::env::args().nth(4).expect("No equation derivative supplied");
@@ -12,7 +12,7 @@ fn main() {
     let expr: meval::Expr = derivative.parse().expect("Unable to parse derivative, check your typing!");
     let derivative = expr.bind("x").expect("Derivative does not contain variable!");
 
-    let initial_value = initial_value.parse::<f64>().expect("Non number supplied to initial value");
+    //let initial_value = initial_value.parse::<f64>().expect("Non number supplied to initial value");
     let max_iterations = max_iterations.parse::<i32>().expect("Non number supplied to max iterations");
     let mut current_value = initial_value;
     let mut next_x = 0.0;
@@ -20,12 +20,12 @@ fn main() {
 
 
     print!("{:<8}  ", "Iteration");
-    print!("{:>12.10}  ", "Current");
-    print!("{:>12.10}  ", "F(x)");
-    print!("{:>12.10}  ", "F'(x)");
-    print!("{:>12.10}  ", "Delta");
-    print!("{:>12.10}  ", "Next");
-    println!("{:>12.18}", "Error");
+    print!("{:>+20.18}  ", "Current");
+    print!("{:>+20.18}  ", "F(x)");
+    print!("{:>+20.18}  ", "F'(x)");
+    print!("{:>+20.18}  ", "Delta");
+    print!("{:>+20.18}  ", "Next");
+    println!("{:>+20.18}", "Error");
 
     for i in 0..max_iterations {
         let fx = equation(current_value);
@@ -36,12 +36,12 @@ fn main() {
         error = (current_value - next_x).abs();
 
         print!("{:<8} ", i);
-        print!("{:>+12.10}  ", current_value);
-        print!("{:>+12.10}  ", fx);
-        print!("{:>+12.10}  ", dx);
-        print!("{:>+12.10}  ", delta);
-        print!("{:>+12.10}  ", next_x);
-        println!("{:>+12.18}", error);
+        print!("{:>+20.18}  ", current_value);
+        print!("{:>+20.18}  ", fx);
+        print!("{:>+20.18}  ", dx);
+        print!("{:>+20.18}  ", delta);
+        print!("{:>+20.18}  ", next_x);
+        println!("{:>+20.18}", error);
 
         current_value = next_x;
     }

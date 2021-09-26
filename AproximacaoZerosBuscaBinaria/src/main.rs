@@ -27,13 +27,17 @@ fn main() {
 
         x = (a + b)/2.0;
         fa = func(a);
-        fb = func(b);
+        fb = func(b);   
         fx = func(x);
 
         print!("{:<8} ", i);
-        print!("{:>12.10}  ", a);
-        print!("{:>12.10}  ", x);
-        println!("{:>12.10}", b);
+        print!("{:>12.4}  ", a);
+        print!("{:>12.4}  ", x);
+        print!("{:>12.4}  ", b);
+        print!("{:>12.4}  ", fa);
+        print!("{:>12.4}  ", fx);
+        print!("{:>12.4}  ", fb);
+        println!("{:>12.4}  ", (b-a)/2.0);
 
         if fa*fx > 0.0{
             a = x;
